@@ -1,42 +1,39 @@
 import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import {
-  navbarVariants,
-  navbarItemVariants,
-  navbarDropdownVariants,
-  navbarDropdownItemVariants,
-} from './navbar-variants';
 
-// NavBar Props 타입 정의
-export interface NavBarProps
-  extends React.HTMLAttributes<HTMLElement>,
-    VariantProps<typeof navbarVariants> {}
+// NavBar 기본 Props
+export interface NavBarProps extends React.HTMLAttributes<HTMLElement> {
+  orientation?: 'horizontal' | 'vertical';
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'ghost' | 'solid';
+}
 
-// NavBar 아이템 Props 타입 정의
-export interface NavBarItemProps
-  extends React.HTMLAttributes<HTMLLIElement>,
-    VariantProps<typeof navbarItemVariants> {
-  children?: React.ReactNode;
-  href?: string;
+// NavBar 아이템 Props
+export interface NavBarItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  orientation?: 'horizontal' | 'vertical';
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'ghost' | 'solid';
+  active?: boolean;
   isActive?: boolean;
+  href?: string;
   hasDropdown?: boolean;
   onItemClick?: () => void;
 }
 
-// NavBar 드롭다운 Props 타입 정의
+// NavBar 드롭다운 Props
 export interface NavBarDropdownProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof navbarDropdownVariants> {
-  children?: React.ReactNode;
+  extends React.HTMLAttributes<HTMLDivElement> {
+  orientation?: 'horizontal' | 'vertical';
+  size?: 'sm' | 'md' | 'lg';
   isOpen?: boolean;
 }
 
-// NavBar 드롭다운 아이템 Props 타입 정의
+// NavBar 드롭다운 아이템 Props
 export interface NavBarDropdownItemProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof navbarDropdownItemVariants> {
-  children?: React.ReactNode;
-  href?: string;
+  extends React.HTMLAttributes<HTMLDivElement> {
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'ghost' | 'solid';
+  active?: boolean;
   isActive?: boolean;
+  href?: string;
   onItemClick?: () => void;
 }

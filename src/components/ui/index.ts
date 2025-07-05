@@ -7,16 +7,25 @@
 
 // NavBar 컴포넌트들
 export {
-  NavBarComponent as NavBar,
+  NavBar,
+  NavBarComponent,
   NavBarItem,
   NavBarDropdown,
   NavBarDropdownItem,
 } from './navbar';
 
-// NavBar variants (별도 파일에서 export)
+// NavBar variants
 export {
   navbarVariants,
   navbarItemVariants,
   navbarDropdownVariants,
   navbarDropdownItemVariants,
 } from './navbar-variants';
+
+// NavBar types
+export type {
+  NavBarProps,
+  NavBarItemProps,
+  NavBarDropdownProps,
+  NavBarDropdownItemProps,
+} from './navbar-types';

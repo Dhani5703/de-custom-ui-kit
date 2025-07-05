@@ -5,66 +5,24 @@ import { NavBar } from './components/ui';
 function App() {
   const [activeMenu, setActiveMenu] = useState('home');
 
+  // 메뉴 아이템 정의
+  const menuItems = [
+    { id: 'home', label: '홈', href: '#' },
+    { id: 'about', label: '소개', href: '#' },
+    { id: 'services', label: '서비스', href: '#' },
+    { id: 'contact', label: '연락처', href: '#' },
+  ];
+
   return (
     <div>
-      {/* NavBar 사용 예시 - 기본 가로형 NavBar */}
+      {/* 완전히 컴포넌트화된 NavBar */}
       <NavBar
-        orientation='horizontal'
-        size='md'
-        variant='default'
+        activeMenu={activeMenu}
+        onMenuChange={setActiveMenu}
+        menuItems={menuItems}
+        logoText='My UI'
         className='bg-white border-b border-gray-200'
-      >
-        {/* NavBar 아이템들 - isActive: 현재 활성 메뉴 표시, href: 링크 주소, hasDropdown: 드롭다운 메뉴 여부 */}
-        <div className='flex items-center space-x-8'>
-          <a href='#' className='text-xl font-bold text-gray-900'>
-            My UI
-          </a>
-          <a
-            href='#'
-            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeMenu === 'home'
-                ? 'text-blue-600 bg-blue-50'
-                : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-            onClick={() => setActiveMenu('home')}
-          >
-            홈
-          </a>
-          <a
-            href='#'
-            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeMenu === 'about'
-                ? 'text-blue-600 bg-blue-50'
-                : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-            onClick={() => setActiveMenu('about')}
-          >
-            소개
-          </a>
-          <a
-            href='#'
-            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeMenu === 'services'
-                ? 'text-blue-600 bg-blue-50'
-                : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-            onClick={() => setActiveMenu('services')}
-          >
-            서비스
-          </a>
-          <a
-            href='#'
-            className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeMenu === 'contact'
-                ? 'text-blue-600 bg-blue-50'
-                : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-            onClick={() => setActiveMenu('contact')}
-          >
-            연락처
-          </a>
-        </div>
-      </NavBar>
+      />
 
       {/* 메인 콘텐츠 영역 */}
       <main className='p-8'>

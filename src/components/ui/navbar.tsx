@@ -2,25 +2,26 @@
  * NavBar 컴포넌트 사용법
  *
  * 1. 기본 import 방법:
- * import { NavBar, NavBarItem, NavBarDropdown, NavBarDropdownItem } from '@/components/ui';
+ * import { NavBar } from '@/components/ui';
  *
  * 2. 개별 import 방법:
  * import { NavBar } from '@/components/ui/navbar';
- * import { navbarVariants } from '@/components/ui/navbar-variants';
  *
  * 3. 주요 Props:
- * - orientation: 'horizontal' | 'vertical' (가로형/세로형)
- * - size: 'sm' | 'md' | 'lg' (크기)
- * - variant: 'default' | 'ghost' | 'solid' (스타일)
- * - isActive: boolean (활성 상태)
- * - hasDropdown: boolean (드롭다운 여부)
+ * - activeMenu: string (현재 활성화된 메뉴 아이템)
+ * - onMenuChange: (menu: string) => void (메뉴 변경 핸들러)
+ * - menuItems: Array<{id: string, label: string, href?: string}> (메뉴 아이템 목록)
+ * - logoText?: string (로고 텍스트, 기본값: 'My UI')
+ * - logoHref?: string (로고 링크, 기본값: '#')
+ * - className?: string (추가 CSS 클래스)
  *
  * 4. 사용 예시:
- * <NavBar orientation="horizontal" size="md" variant="default">
- *   <NavBarItem href="/" isActive={true}>홈</NavBarItem>
- *   <NavBarItem href="/about">소개</NavBarItem>
- *   <NavBarItem hasDropdown={true}>서비스</NavBarItem>
- * </NavBar>
+ * <NavBar
+ *   activeMenu={activeMenu}
+ *   onMenuChange={setActiveMenu}
+ *   menuItems={menuItems}
+ *   logoText="My App"
+ * />
  *
  * 디자인 커스터마이징 방법:
  *
@@ -69,6 +70,76 @@
  */
 
 import * as React from 'react';
+
+interface NavBarProps {
+  /** 현재 활성화된 메뉴 아이템 */
+  activeMenu: string;
+  /** 메뉴 변경 핸들러 */
+  onMenuChange: (menu: string) => void;
+  /** 추가 CSS 클래스 */
+  className?: string;
+  /** 메뉴 아이템 목록 */
+  menuItems: Array<{
+    id: string;
+    label: string;
+    href?: string;
+  }>;
+  /** 로고 텍스트 */
+  logoText?: string;
+  /** 로고 링크 */
+  logoHref?: string;
+}
+
+export const NavBar: React.FC<NavBarProps> = ({
+  activeMenu,
+  onMenuChange,
+  className = '',
+  menuItems,
+  logoText = 'My UI',
+  logoHref = '#',
+}) => {
+  return (
+    <nav
+      className={`bg-white border-b border-gray-200 px-4 py-3 ${className}`}
+      role='navigation'
+      aria-label='메인 네비게이션'
+    >
+      <div className='flex items-center justify-between'>
+        <div className='flex items-center space-x-8'>
+          <a
+            href={logoHref}
+            className='text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors'
+            aria-label='홈으로 이동'
+          >
+            {logoText}
+          </a>
+
+          {/* 메뉴 아이템들 */}
+          {menuItems.map(item => (
+            <a
+              key={item.id}
+              href={item.href || '#'}
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                activeMenu === item.id
+                  ? 'text-blue-600 bg-blue-50'
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+              onClick={e => {
+                e.preventDefault();
+                onMenuChange(item.id);
+              }}
+              aria-current={activeMenu === item.id ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+// 기존 NavBar 컴포넌트들 (복잡한 구조용)
 import { cn } from '@/lib/utils';
 import {
   navbarVariants,
@@ -77,56 +148,14 @@ import {
   navbarDropdownItemVariants,
 } from './navbar-variants';
 import type {
-  NavBarProps,
+  NavBarProps as ComplexNavBarProps,
   NavBarItemProps,
   NavBarDropdownProps,
   NavBarDropdownItemProps,
 } from './navbar-types';
 
-/**
- * NavBar 컴포넌트
- *
- * 디자인 커스터마이징 방법:
- *
- * 1. 색상 테마 변경:
- *    - 기본 색상: bg-white, text-gray-900
- *    - 활성 메뉴: text-blue-600, bg-blue-50
- *    - 호버 효과: hover:text-gray-900, hover:bg-gray-50
- *    - 테두리: border-gray-200
- *
- * 2. 크기 및 간격 조정:
- *    - 전체 패딩: px-4 py-3 (가로 16px, 세로 12px)
- *    - 메뉴 아이템 패딩: px-3 py-2 (가로 12px, 세로 8px)
- *    - 메뉴 간격: space-x-8 (32px)
- *    - 폰트 크기: text-sm (14px), text-xl (20px)
- *
- * 3. 애니메이션 효과:
- *    - transition-colors: 색상 변화 부드러운 전환
- *    - 추가 가능: transition-all, duration-200 등
- *
- * 4. 반응형 디자인:
- *    - 모바일: md: 접두사 사용 (예: md:flex, md:hidden)
- *    - 태블릿: lg: 접두사 사용
- *    - 데스크톱: xl: 접두사 사용
- *
- * 5. 커스텀 스타일 적용:
- *    - className prop으로 추가 클래스 전달 가능
- *    - CSS 모듈이나 styled-components 사용 가능
- *    - Tailwind CSS 커스텀 클래스 정의 가능
- *
- * 6. 다크 모드 지원:
- *    - dark: 접두사 사용 (예: dark:bg-gray-800, dark:text-white)
- *    - 시스템 테마 감지: prefers-color-scheme 미디어 쿼리
- *
- * 7. 접근성 개선:
- *    - role="navigation" 추가
- *    - aria-label 속성 추가
- *    - 키보드 네비게이션 지원
- *    - 포커스 표시 스타일링
- */
-
-// NavBar 컴포넌트
-const NavBarComponent = React.forwardRef<HTMLElement, NavBarProps>(
+// NavBar 컴포넌트 (복잡한 구조용)
+const NavBarComponent = React.forwardRef<HTMLElement, ComplexNavBarProps>(
   ({ className, orientation, size, variant, ...props }, ref) => {
     return (
       <nav
@@ -140,7 +169,7 @@ const NavBarComponent = React.forwardRef<HTMLElement, NavBarProps>(
     );
   }
 );
-NavBarComponent.displayName = 'NavBar';
+NavBarComponent.displayName = 'NavBarComponent';
 
 // NavBar 아이템 컴포넌트
 const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
