@@ -4,3 +4,19 @@
 // export { Modal } from './Modal'
 // export { Toast } from './Toast'
 // export { Calendar } from './Calendar'
+
+// NavBar 컴포넌트들
+export {
+  NavBar,
+  NavBarItem,
+  NavBarDropdown,
+  NavBarDropdownItem,
+} from './navbar';
+
+// NavBar variants (별도 파일에서 export)
+export {
+  navbarVariants,
+  navbarItemVariants,
+  navbarDropdownVariants,
+  navbarDropdownItemVariants,
+} from './navbar-variants';
