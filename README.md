@@ -31,14 +31,17 @@ src/
 ## 🎯 핵심 설계 원칙
 
 ### 1. Variant 기반 설계
+
 - `variant`, `size`, `disabled` 등 속성 일반화
 - class-variance-authority를 활용한 타입 안전한 variant 관리
 
 ### 2. 상태/스타일 분리
+
 - UI 로직과 스타일 토큰 분리
 - 재사용 가능한 스타일 시스템
 
 ### 3. 순환참조 방지
+
 - 명확한 계층 구조 설계
 - 배럴 익스포트를 통한 깔끔한 import
 
@@ -61,6 +64,7 @@ yarn type-check
 ## 📦 컴포넌트 목록
 
 ### UI 컴포넌트
+
 - [ ] Button (variant, size, disabled)
 - [ ] Input (variant, size, error state)
 - [ ] Modal (variant, size, backdrop)
@@ -69,6 +73,7 @@ yarn type-check
 - [ ] Clock (analog, digital)
 
 ### 레이아웃 컴포넌트
+
 - [ ] Navbar (responsive, mobile menu)
 - [ ] Sidebar (collapsible, nested menu)
 - [ ] Footer (links, social media)
@@ -76,18 +81,18 @@ yarn type-check
 ## 🔧 사용 예시
 
 ```tsx
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 function App() {
   return (
     <div>
-      <Button variant="primary" size="lg" onClick={handleClick}>
+      <Button variant='primary' size='lg' onClick={handleClick}>
         클릭하세요
       </Button>
-      <Input variant="default" size="md" placeholder="입력하세요" />
+      <Input variant='default' size='md' placeholder='입력하세요' />
     </div>
-  )
+  );
 }
 ```
 
