@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { NavBar } from './components/ui';
+import { NavBar } from './components/ui/navbar';
 
 function App() {
   const [activeMenu, setActiveMenu] = useState('home');

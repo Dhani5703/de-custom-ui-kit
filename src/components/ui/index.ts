@@ -12,15 +12,11 @@ export {
   NavBarItem,
   NavBarDropdown,
   NavBarDropdownItem,
-} from './navbar';
-
-// NavBar variants
-export {
   navbarVariants,
   navbarItemVariants,
   navbarDropdownVariants,
   navbarDropdownItemVariants,
-} from './navbar-variants';
+} from './navbar';
 
 // NavBar types
 export type {
@@ -28,4 +24,4 @@ export type {
   NavBarItemProps,
   NavBarDropdownProps,
   NavBarDropdownItemProps,
-} from './navbar-types';
+} from './navbar';
