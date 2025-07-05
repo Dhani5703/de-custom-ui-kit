@@ -7,7 +7,7 @@
 
 // NavBar 컴포넌트들
 export {
-  NavBar,
+  NavBarComponent as NavBar,
   NavBarItem,
   NavBarDropdown,
   NavBarDropdownItem,
