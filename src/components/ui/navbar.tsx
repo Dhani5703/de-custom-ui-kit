@@ -1,3 +1,28 @@
+/*
+ * NavBar 컴포넌트 사용법
+ *
+ * 1. 기본 import 방법:
+ * import { NavBar, NavBarItem, NavBarDropdown, NavBarDropdownItem } from '@/components/ui';
+ *
+ * 2. 개별 import 방법:
+ * import { NavBar } from '@/components/ui/navbar';
+ * import { navbarVariants } from '@/components/ui/navbar-variants';
+ *
+ * 3. 주요 Props:
+ * - orientation: 'horizontal' | 'vertical' (가로형/세로형)
+ * - size: 'sm' | 'md' | 'lg' (크기)
+ * - variant: 'default' | 'ghost' | 'solid' (스타일)
+ * - isActive: boolean (활성 상태)
+ * - hasDropdown: boolean (드롭다운 여부)
+ *
+ * 4. 사용 예시:
+ * <NavBar orientation="horizontal" size="md" variant="default">
+ *   <NavBarItem href="/" isActive={true}>홈</NavBarItem>
+ *   <NavBarItem href="/about">소개</NavBarItem>
+ *   <NavBarItem hasDropdown={true}>서비스</NavBarItem>
+ * </NavBar>
+ */
+
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import {
