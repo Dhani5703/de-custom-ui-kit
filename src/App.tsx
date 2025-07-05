@@ -1,35 +1,39 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import { NavBar } from './components/ui/navbar';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [activeMenu, setActiveMenu] = useState('home');
+
+  // 메뉴 아이템 정의
+  const menuItems = [
+    { id: 'home', label: '홈', href: '#' },
+    { id: 'about', label: '소개', href: '#' },
+    { id: 'services', label: '서비스', href: '#' },
+    { id: 'contact', label: '연락처', href: '#' },
+  ];
 
   return (
-    <>
-      <div>
-        <a href='https://vite.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <div>
+      {/* 완전히 컴포넌트화된 NavBar */}
+      <NavBar
+        activeMenu={activeMenu}
+        onMenuChange={setActiveMenu}
+        menuItems={menuItems}
+        logoText='My UI'
+        className='bg-white border-b border-gray-200'
+      />
+
+      {/* 메인 콘텐츠 영역 */}
+      <main className='p-8'>
+        <h1 className='text-2xl font-bold text-gray-900 mb-4'>
+          현재 선택된 메뉴: {activeMenu}
+        </h1>
+        <p className='text-gray-600'>
+          NavBar 컴포넌트가 정상적으로 작동하고 있습니다.
         </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </main>
+    </div>
   );
 }
-
 export default App;

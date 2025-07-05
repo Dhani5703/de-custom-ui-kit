@@ -4,3 +4,30 @@
 // export { Modal } from './Modal'
 // export { Toast } from './Toast'
 // export { Calendar } from './Calendar'
+
+// NavBar 컴포넌트들
+export {
+  NavBar,
+  NavBarComponent,
+  NavBarItem,
+  NavBarDropdown,
+  NavBarDropdownItem,
+  HamburgerButton,
+  MobileMenu,
+  navbarVariants,
+  navbarItemVariants,
+  navbarDropdownVariants,
+  navbarDropdownItemVariants,
+  mobileMenuVariants,
+  hamburgerButtonVariants,
+} from './navbar';
+
+// NavBar types
+export type {
+  NavBarProps,
+  NavBarItemProps,
+  NavBarDropdownProps,
+  NavBarDropdownItemProps,
+  MobileMenuProps,
+  HamburgerButtonProps,
+} from './navbar';
