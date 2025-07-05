@@ -12,10 +12,14 @@ export {
   NavBarItem,
   NavBarDropdown,
   NavBarDropdownItem,
+  HamburgerButton,
+  MobileMenu,
   navbarVariants,
   navbarItemVariants,
   navbarDropdownVariants,
   navbarDropdownItemVariants,
+  mobileMenuVariants,
+  hamburgerButtonVariants,
 } from './navbar';
 
 // NavBar types
@@ -24,4 +28,6 @@ export type {
   NavBarItemProps,
   NavBarDropdownProps,
   NavBarDropdownItemProps,
+  MobileMenuProps,
+  HamburgerButtonProps,
 } from './navbar';

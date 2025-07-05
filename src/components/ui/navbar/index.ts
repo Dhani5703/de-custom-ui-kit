@@ -7,12 +7,18 @@ export { NavBarItem } from './navbar-item';
 export { NavBarDropdown } from './navbar-dropdown';
 export { NavBarDropdownItem } from './navbar-dropdown-item';
 
+// 모바일 관련 컴포넌트들
+export { HamburgerButton } from './hamburger-button';
+export { MobileMenu } from './mobile-menu';
+
 // Variants
 export {
   navbarVariants,
   navbarItemVariants,
   navbarDropdownVariants,
   navbarDropdownItemVariants,
+  mobileMenuVariants,
+  hamburgerButtonVariants,
 } from './variants';
 
 // Types
@@ -21,4 +27,6 @@ export type {
   NavBarItemProps,
   NavBarDropdownProps,
   NavBarDropdownItemProps,
+  MobileMenuProps,
+  HamburgerButtonProps,
 } from './types';
